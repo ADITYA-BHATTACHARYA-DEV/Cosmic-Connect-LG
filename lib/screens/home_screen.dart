@@ -1,7 +1,7 @@
-import 'package:cosmic_controller_lg/components/connection_flag.dart';
-import 'package:cosmic_controller_lg/connections/ssh.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart'; // For icons
+import 'package:lg_connection/components/connection_flag.dart';
+import 'package:lg_connection/connections/ssh.dart';
 
 bool connectionStatus = false;
 const String searchPlace = 'India';
@@ -150,6 +150,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       () async => await ssh.sendKML2(),
                     ),
                     _buildButton(
+                      'Clear All KMLs',
+                      Color.fromARGB(255, 48, 7, 232),
+                      buttonTextStyle,
+                      FontAwesomeIcons.trash,
+                      () async => await ssh.clearAllKml(),
+                    ),
+                    _buildButton(
                       'CLEAN LOGOS',
                       Colors.teal,
                       buttonTextStyle,
@@ -163,6 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       FontAwesomeIcons.redoAlt,
                       () async => await ssh.setRefresh(),
                     ),
+                    
                     _buildButton(
                       'RESET REFRESH',
                       Colors.redAccent,

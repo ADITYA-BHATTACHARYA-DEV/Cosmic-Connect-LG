@@ -191,6 +191,45 @@ Future<SSHSession?> clearKML() async {
 
  
 }
+
+
+////Clear ALL KMLS
+
+
+ Future<void> clearAllKml() async {
+  try {
+    // Check if the SSH client is initialized
+    if (_client == null) {
+      print('SSH client is not initialized.');
+      return;
+    }
+
+    // Clear KML content
+    String emptyKml = '';
+
+    // Ensure _numberOfRigs is a valid number
+    int numberOfRigs = int.tryParse(_numberOfRigs) ?? 0;
+    if (numberOfRigs < 2) {
+      print('Invalid _numberOfRigs value.');
+      return;
+    }
+
+    // Iterate through the rigs and clear KML files
+    for (int i = 2; i <= numberOfRigs; i++) {
+      final command = "echo '$emptyKml' > /var/www/html/kml/slave_$i.kml";
+      try {
+        final execResult = await _client!.execute(command);
+        print('Cleared KML for slave_$i: $execResult');
+      } catch (e) {
+        print('Error clearing KML for slave_$i: $e');
+      }
+    }
+  } catch (e) {
+    print('An error occurred while executing the command: $e');
+  }
+}
+/////
+
   Future<SSHSession?> poweroff() async {
    
 
@@ -530,8 +569,18 @@ try{
     }
   }
 
+//////
+///
+
+
+
+
 }
 
+
+///
+///
+///
 
 
 
