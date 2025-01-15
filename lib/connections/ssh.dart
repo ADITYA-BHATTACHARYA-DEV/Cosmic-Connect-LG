@@ -198,16 +198,16 @@ Future<SSHSession?> clearKML() async {
 
  Future<void> clearAllKml() async {
   try {
-    // Check if the SSH client is initialized
+    
     if (_client == null) {
       print('SSH client is not initialized.');
       return;
     }
 
-    // Clear KML content
+    
     String emptyKml = '';
 
-    // Ensure _numberOfRigs is a valid number
+    
     int numberOfRigs = int.tryParse(_numberOfRigs) ?? 0;
     if (numberOfRigs < 2) {
       print('Invalid _numberOfRigs value.');
